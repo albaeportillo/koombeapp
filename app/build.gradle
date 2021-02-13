@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -44,14 +46,38 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.1.0'
+
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+
+   //TODO For Kotlin Solution
+    //Couchbase Lite
+    def couchbase_version = "1.0.0"
+    implementation "com.github.MOLO17:couchbase-lite-kotlin:$couchbase_version"
+
+    //Retrofit
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    //Hilt
+    def hiltGoogle_version = "2.30-alpha"
+    implementation "com.google.dagger:hilt-android:$hiltGoogle_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltGoogle_version"
+
+    def hiltAndroidX_version = "1.0.0-alpha01"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidX_version"
+    kapt "androidx.hilt:hilt-compiler:$hiltAndroidX_version"
+
+
+
+    //Testing
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-   //TODO For Kotlin Solution
-    implementation "com.github.MOLO17:couchbase-lite-kotlin:1.0.0"
 }
