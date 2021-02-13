@@ -18,7 +18,19 @@ android {
     }
 
     buildTypes {
+
+
+        debug {
+            useProguard false
+            debuggable true
+            buildConfigField 'String', 'SERVER_HOST', '""'
+            buildConfigField 'String', 'SERVER_PORT', '""'
+
+        }
         release {
+            debuggable false
+            buildConfigField 'String', 'SERVER_HOST', '""'
+            buildConfigField 'String', 'SERVER_PORT', '""'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
